@@ -68,10 +68,10 @@ locals {
   ]
 
   check_stack_progress = [
-    "aws cloudformation wait stack-create-complete --stack-name ${var.stackname}",
+    "aws cloudformation wait stack-create-complete --stack-name ${var.stackname} --profile ${var.local-exec-profile}",
   ]
 
   destroy_changeset_command = [
-    "aws cloudformation delete-stack --stack-name ${var.stackname}",
+    "aws cloudformation delete-stack --stack-name ${var.stackname} --profile ${var.local-exec-profile}",
   ]
 }

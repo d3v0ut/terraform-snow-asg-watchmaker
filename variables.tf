@@ -28,7 +28,7 @@ variable "region" {
      }
 
      variable "AppVolumeDevice" {
-  default = "/dev/xvdf"
+  default = "true"
      }
 
      variable "AppVolumeMountPath" {
@@ -36,7 +36,7 @@ variable "region" {
      }
 
      variable "AppVolumeSize" {
-  default = "50"
+  default = "100"
      }
 
      variable "AppVolumeType" {
@@ -52,27 +52,20 @@ variable "region" {
      }
   
      variable "CfnGetPipUrl" {
-  default = "https://bootstrap.pypa.io/get-pip.py"
+  default = "https://bootstrap.pypa.io/2.6/get-pip.py"
      }
   
-     variable "CloudWatchLogsAgentUrl" {
-  default = ""
-     }
-  
-     variable "CloudWatchLogsConfigUrl" {
-  default = ""
-     }
-  
-     variable "CloudWatchLogsInstallUrl" {
-  default = ""
-     }
-  
+  variable "CloudWatchAgentUrl" {
+  type        = "string"
+  description = "(Optional) S3 URL to CloudWatch Agent installer. Example: s3://amazoncloudwatch-agent/linux/amd64/latest/AmazonCloudWatchAgent.zip"
+  default     = ""
+}
      variable "InstanceRole" {
   default = ""
      }
   
      variable "InstanceType" {
-  default = "t2.micro"
+  default = "t2.medium"
      }
   
      variable "KeyPairName" {
@@ -89,22 +82,6 @@ variable "region" {
   
      variable "NoUpdates" {
   default = "false"
-     }
-  
-     variable "PuppetInstallScriptUrl" {
-  default = ""
-     }
-  
-     variable "PuppetMasterIp" {
-  default = ""
-     }
-  
-     variable "PuppetEnvironment" {
-  default = "sbx"
-     }
-  
-     variable "PuppetAgentRpm" {
-  default = ""
      }
   
      variable "SecurityGroupIds" {
@@ -159,4 +136,44 @@ variable "terra-profile" {
     }
   variable "role_session_name" {
     default = "terraform"
+    }
+
+  variable "DesiredCapacity" {
+    default = ""
+    }
+  variable "MaxCapacity" {
+    default = ""
+    }
+  variable "MinCapacity" {
+    default = ""
+    }
+  variable "PypiIndexUrl" {
+    default = ""
+    }
+  variable "ScaleDownSchedule" {
+    default = ""
+    }
+  variable "ScaleUpSchedule" {
+    default = ""
+    }
+  variable "ToggleCfnInitUpdate" {
+    default = ""
+    }
+  variable "ToggleNewInstances" {
+    default = ""
+    }
+  variable "WatchmakerAdminGroups" {
+    default = ""
+    }
+  variable "WatchmakerAdminUsers" {
+    default = ""
+    }
+  variable "WatchmakerConfig" {
+    default = ""
+    }
+  variable "WatchmakerEnvironment" {
+    default = ""
+    }
+  variable "WatchmakerOuPath" {
+    default = ""
     }

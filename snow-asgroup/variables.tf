@@ -1,4 +1,6 @@
-#variable "region" {}
+
+## rdcb module variables
+
 
      variable "AmiId" {
   default = "ami-0748b8574d41a3ebb"
@@ -21,7 +23,7 @@
      }
 
      variable "AppVolumeDevice" {
-  default = "/dev/xvdf"
+  default = "true"
      }
 
      variable "AppVolumeMountPath" {
@@ -29,7 +31,7 @@
      }
 
      variable "AppVolumeSize" {
-  default = "50"
+  default = "100"
      }
 
      variable "AppVolumeType" {
@@ -45,27 +47,20 @@
      }
   
      variable "CfnGetPipUrl" {
-  default = "https://bootstrap.pypa.io/get-pip.py"
+  default = "https://bootstrap.pypa.io/2.6/get-pip.py"
      }
-  
-     variable "CloudWatchLogsAgentUrl" {
-  default = ""
-     }
-  
-     variable "CloudWatchLogsConfigUrl" {
-  default = ""
-     }
-  
-     variable "CloudWatchLogsInstallUrl" {
-  default = ""
-     }
-  
+
+     variable "CloudWatchAgentUrl" {
+  type        = "string"
+  description = "(Optional) S3 URL to CloudWatch Agent installer. Example: s3://amazoncloudwatch-agent/linux/amd64/latest/AmazonCloudWatchAgent.zip"
+  default     = ""
+}
      variable "InstanceRole" {
   default = ""
      }
   
      variable "InstanceType" {
-  default = "t2.micro"
+  default = "t2.medium"
      }
   
      variable "KeyPairName" {
@@ -82,22 +77,6 @@
   
      variable "NoUpdates" {
   default = "false"
-     }
-  
-     variable "PuppetInstallScriptUrl" {
-  default = ""
-     }
-  
-     variable "PuppetMasterIp" {
-  default = ""
-     }
-  
-     variable "PuppetEnvironment" {
-  default = "sbx"
-     }
-  
-     variable "PuppetAgentRpm" {
-  default = ""
      }
   
      variable "SecurityGroupIds" {
@@ -131,7 +110,7 @@
      variable "RdsDbPassword" {
   default = ""
      }
-  
+
   variable "stackname" {
   default = ""
   }
@@ -139,8 +118,51 @@
   variable "s3bucket" {
   default = ""
   }
-
+  
   variable "local-exec-profile" {
   default = "default"
   }
 
+variable "terra-profile" {
+  default = "default"
+  }
+
+  variable "DesiredCapacity" {
+    default = ""
+    }
+  variable "MaxCapacity" {
+    default = ""
+    }
+  variable "MinCapacity" {
+    default = ""
+    }
+  variable "PypiIndexUrl" {
+    default = ""
+    }
+  variable "ScaleDownSchedule" {
+    default = ""
+    }
+  variable "ScaleUpSchedule" {
+    default = ""
+    }
+  variable "ToggleCfnInitUpdate" {
+    default = ""
+    }
+  variable "ToggleNewInstances" {
+    default = ""
+    }
+  variable "WatchmakerAdminGroups" {
+    default = ""
+    }
+  variable "WatchmakerAdminUsers" {
+    default = ""
+    }
+  variable "WatchmakerConfig" {
+    default = ""
+    }
+  variable "WatchmakerEnvironment" {
+    default = ""
+    }
+  variable "WatchmakerOuPath" {
+    default = ""
+    }

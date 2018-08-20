@@ -62,6 +62,9 @@
      variable "InstanceType" {
   default = "t2.medium"
      }
+     variable "LogGroupName" {
+       default = ""
+     }
   
      variable "KeyPairName" {
   default = ""

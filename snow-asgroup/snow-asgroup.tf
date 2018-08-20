@@ -43,10 +43,12 @@ locals {
      "\"CfnBootstrapUtilsUrl=${var.CfnBootstrapUtilsUrl}\"",  
      "\"CfnEndpointUrl=${var.CfnEndpointUrl}\"",  
      "\"CfnGetPipUrl=${var.CfnGetPipUrl}\"",  
+     "\"CloudWatchAgentUrl=${var.CloudWatchAgentUrl}\""
      "\"DesiredCapacity=${var.DesiredCapacity}\"",
      "\"InstanceRole=${var.InstanceRole}\"",  
      "\"InstanceType=${var.InstanceType}\"",  
-     "\"KeyPairName=${var.KeyPairName}\"",  
+     "\"KeyPairName=${var.KeyPairName}\"", 
+     "\"LogGroupName=${var.LogGroupName}\"",
      "\"MaxCapacity=${var.MaxCapacity}\"",
      "\"MinCapacity=${var.MinCapacity}\"",
      "\"NoPublicIp=${var.NoPublicIp}\"",  

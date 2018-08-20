@@ -19,3 +19,30 @@
 "WatchmakerConfig" = ""
 "WatchmakerEnvironment" = ""
 "WatchmakerOuPath" = ""
+
+ "LogGroupName" = "${var.LogGroupName}"
+
+      variable "LogGroupName" {
+       default = ""
+     }
+
+"LogGroupName" = "snow-logs-12345"
+
+
+        "CloudWatchAgentUrl": {
+            "AllowedPattern": "^$|^s3://(.*)$",
+            "ConstraintDescription": "Must use an S3 URL (starts with \"s3://\")",
+            "Default": "s3://amazoncloudwatch-agent/linux/amd64/latest/AmazonCloudWatchAgent.zip",
+            "Description": "URL to CloudWatchAgent",
+            "Type": "String"
+
+
+"CloudWatchAgentUrl" = "s3://amazoncloudwatch-agent/linux/amd64/latest/AmazonCloudWatchAgent.zip"
+
+  variable "CloudWatchAgentUrl" {
+  type        = "string"
+  description = "(Optional) S3 URL to CloudWatch Agent installer. Example: s3://amazoncloudwatch-agent/linux/amd64/latest/AmazonCloudWatchAgent.zip"
+  default     = ""
+}
+
+  "CloudWatchAgentUrl" = "${var.CloudWatchAgentUrl}"

@@ -71,7 +71,10 @@ variable "region" {
      variable "KeyPairName" {
   default = ""
      }
-  
+     variable "LogGroupName" {
+       default = ""
+     }
+    
      variable "NoPublicIp" {
   default = "true"
      }

@@ -27,6 +27,7 @@ module "snow-asgroup" {
   "InstanceRole" = "${var.InstanceRole}"
   "InstanceType" = "${var.InstanceType}"
   "KeyPairName" = "${var.KeyPairName}"
+  "LogGroupName" = "${var.LogGroupName}"
   "MaxCapacity" = "${var.MaxCapacity}"
   "MinCapacity" = "${var.MinCapacity}"
   "NoPublicIp" = "${var.NoPublicIp}"

@@ -43,7 +43,10 @@ locals {
      "\"CfnBootstrapUtilsUrl=${var.CfnBootstrapUtilsUrl}\"",  
      "\"CfnEndpointUrl=${var.CfnEndpointUrl}\"",  
      "\"CfnGetPipUrl=${var.CfnGetPipUrl}\"",  
-     "\"CloudWatchAgentUrl=${var.CloudWatchAgentUrl}\""
+     "\"CloudWatchAgentUrl=${var.CloudWatchAgentUrl}\"",
+     "\"CloudWatchLogsAgentUrl=${var.CloudWatchLogsAgentUrl}\"",
+     "\"CloudWatchLogsConfigUri=${var.CloudWatchLogsConfigUri}\"",
+     "\"CloudWatchLogsInstallUri=${var.CloudWatchLogsInstallUri}\"",
      "\"DesiredCapacity=${var.DesiredCapacity}\"",
      "\"InstanceRole=${var.InstanceRole}\"",  
      "\"InstanceType=${var.InstanceType}\"",  

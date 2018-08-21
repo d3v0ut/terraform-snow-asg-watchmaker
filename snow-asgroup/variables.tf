@@ -54,7 +54,23 @@
   type        = "string"
   description = "(Optional) S3 URL to CloudWatch Agent installer. Example: s3://amazoncloudwatch-agent/linux/amd64/latest/AmazonCloudWatchAgent.zip"
   default     = ""
-}
+     }
+
+    variable "CloudWatchLogsAgentUrl" {
+  type      = "string"
+  default   = ""
+     }
+
+     variable "CloudWatchLogsConfigUri" {
+  type      = "string"
+  default   = ""
+     }
+
+     variable "CloudWatchLogsInstallUri" {
+  type      = "string"
+  default   = ""
+     }
+
      variable "InstanceRole" {
   default = ""
      }

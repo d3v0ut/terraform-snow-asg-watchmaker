@@ -33,7 +33,7 @@
 "RdsDbPassword" = "RdsDbAdmin456$%^" 
 "ScaleDownSchedule" = ""
 "ScaleUpSchedule" = ""
-"SecurityGroupIds" = "sg-91c51be4,sg-2634eb53"
+"SecurityGroupIds" = "sg-5df91328,sg-c29bc0b5"
 "ServiceNowInstallScript" = "https://s3.amazonaws.com/icite-snow/servicenow/scripts/install-servicenow_test.sh"
 "ServiceNowInstallTimeout" = "8"
 "ServiceNowJarZipUrl" = "https://s3.amazonaws.com/icite-snow/servicenow/media/glide-jakarta-05-03-2017__patch3-08-23-2017_09-05-2017_1648.zip"

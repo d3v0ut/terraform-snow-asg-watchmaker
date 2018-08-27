@@ -115,7 +115,7 @@ variable "region" {
   default = "8"
      }
   
-     variable "ServiceNowJarZipUrl" {
+     variable "ServiceNowJarZipUri" {
   default = ""
      }
   

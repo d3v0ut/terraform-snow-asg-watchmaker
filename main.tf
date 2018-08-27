@@ -45,7 +45,7 @@ module "snow-asgroup" {
   "SecurityGroupIds" = "${var.SecurityGroupIds}"
   "ServiceNowInstallScript" = "${var.ServiceNowInstallScript}"
   "ServiceNowInstallTimeout" = "${var.ServiceNowInstallTimeout}"
-  "ServiceNowJarZipUrl" = "${var.ServiceNowJarZipUrl}"
+  "ServiceNowJarZipUri" = "${var.ServiceNowJarZipUri}"
   "SubnetIds" = "${var.SubnetIds}"
   "ToggleCfnInitUpdate" = "${var.ToggleCfnInitUpdate}"
   "ToggleNewInstances" = "${var.ToggleNewInstances}"

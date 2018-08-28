@@ -181,6 +181,9 @@ variable "terra-profile" {
   variable "ToggleNewInstances" {
     default = ""
     }
+    variable "VpcId" {
+      default = ""
+    }
   variable "WatchmakerAdminGroups" {
     default = ""
     }
@@ -196,3 +199,12 @@ variable "terra-profile" {
   variable "WatchmakerOuPath" {
     default = ""
     }
+  variable "dns_name" {
+    default = ""
+  }
+  variable "public_subnets" {
+    default = ["subnet-public1", "subnet-public2"]
+  }
+  variable "public_dnszone_id" {
+    default = ""
+  }

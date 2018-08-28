@@ -185,3 +185,7 @@ variable "terra-profile" {
   variable "WatchmakerOuPath" {
     default = ""
     }
+
+  variable "lb-tg-sg1" {
+    default = ""
+  }

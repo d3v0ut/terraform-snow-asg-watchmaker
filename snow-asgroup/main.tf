@@ -34,7 +34,7 @@ resource "aws_cloudformation_stack" "snowasg" {
   "RdsDbPassword" = "${var.RdsDbPassword}"
   "ScaleDownSchedule" = "${var.ScaleDownSchedule}"
   "ScaleUpSchedule" = "${var.ScaleUpSchedule}"
-  "SecurityGroupIds" = "${var.SecurityGroupIds}"
+  "SecurityGroupIds" = "${var.SecurityGroupIds}, ${var.lb-tg-sg1}"
   "ServiceNowInstallScript" = "${var.ServiceNowInstallScript}"
   "ServiceNowInstallTimeout" = "${var.ServiceNowInstallTimeout}"
   "ServiceNowJarZipUri" = "${var.ServiceNowJarZipUri}"

@@ -90,7 +90,7 @@ resource "aws_acm_certificate_validation" "cert" {
   validation_record_fqdns = ["${aws_route53_record.cert_validation.fqdn}"]
 }
 resource "aws_lb" "alb" {
-  name_prefix               = "${var.stackname}-alb"
+  name               = "${var.stackname}-alb"
   internal           = false
   load_balancer_type = "application"
   security_groups    = ["${aws_security_group.lb-sg1.id}"]
@@ -101,7 +101,7 @@ resource "aws_lb" "alb" {
   }
 }
 resource "aws_lb_target_group" "alb_tg" {
-  name_prefix     = "${var.stackname}-alb-tg"
+  name     = "${var.stackname}-alb-tg"
   port     = 16001
   protocol = "HTTP"
   vpc_id   = "${var.VpcId}"

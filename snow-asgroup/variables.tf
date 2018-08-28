@@ -110,7 +110,7 @@
   default = "8"
      }
   
-     variable "ServiceNowJarZipUrl" {
+     variable "ServiceNowJarZipUri" {
   default = ""
      }
   

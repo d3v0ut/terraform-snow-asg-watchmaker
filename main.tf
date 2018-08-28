@@ -90,7 +90,7 @@ resource "aws_acm_certificate_validation" "cert" {
   validation_record_fqdns = ["${aws_route53_record.cert_validation.fqdn}"]
 }
 resource "aws_lb" "alb" {
-  name               = "${var.stackname}-alb"
+  name_prefix               = "${var.stackname}-alb"
   internal           = false
   load_balancer_type = "application"
   security_groups    = ["${aws_security_group.lb-sg1.id}"]
@@ -101,7 +101,7 @@ resource "aws_lb" "alb" {
   }
 }
 resource "aws_lb_target_group" "alb_tg" {
-  name     = "${var.stackname}-alb-tg"
+  name_prefix     = "${var.stackname}-alb-tg"
   port     = 16001
   protocol = "HTTP"
   vpc_id   = "${var.VpcId}"
@@ -119,7 +119,7 @@ resource "aws_lb_listener" "alb_listener" {
   }
 }
 resource "aws_security_group" "lb-sg1" {
-  name        = "${var.stackname}-lb-sg1"
+  name_prefix        = "${var.stackname}-lb-sg1"
   description = "Security group for accessing SNow via the Internet"
   vpc_id = "${var.VpcId}"
   ingress {
@@ -140,7 +140,7 @@ resource "aws_security_group" "lb-sg1" {
   }
 }
 resource "aws_security_group" "tg-sg1" {
-  name        = "${var.stackname}-tg-sg1"
+  name_prefix        = "${var.stackname}-tg-sg1"
   description = "Security group for accessing SNow via the Load Balancer"
   vpc_id = "${var.VpcId}"
   ingress {

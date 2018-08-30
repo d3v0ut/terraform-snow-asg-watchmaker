@@ -110,6 +110,12 @@ resource "aws_lb_target_group" "alb_tg" {
   vpc_id   = "${var.VpcId}"
   deregistration_delay = 0
 }
+# locals {
+# listener_lookup = {
+  # "true" = "${aws_acm_certificate.cert.arn}",
+  # "false" = "${var.optional_existing_cert_arn}"
+# }
+#}
 resource "aws_lb_listener" "alb_listener" {
   load_balancer_arn = "${aws_lb.alb.arn}"
   port              = "443"

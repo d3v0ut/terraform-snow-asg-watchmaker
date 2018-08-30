@@ -171,11 +171,8 @@ variable "public_dnszone_id" {
   default = ""
 }
 variable "create_certificate" {
-  default = true
+  default = "true"
 }
 variable "optional_existing_cert_arn" {
   default = ""
-}
-variable "use_route53" {
-  default = true
 }

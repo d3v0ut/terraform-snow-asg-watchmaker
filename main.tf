@@ -80,7 +80,7 @@ resource "aws_acm_certificate" "cert" {
   }
 }
 resource "aws_route53_record" "cert_validation" {
-  count = "${var.use_route53 == true ? 1 : 0}"
+  count = "${var.create_certificate == true ? 1 : 0}"
   name    = "${aws_acm_certificate.cert.domain_validation_options.0.resource_record_name}"
   type    = "${aws_acm_certificate.cert.domain_validation_options.0.resource_record_type}"
   zone_id = "${var.public_dnszone_id}"
@@ -111,24 +111,11 @@ resource "aws_lb_target_group" "alb_tg" {
   deregistration_delay = 0
 }
 resource "aws_lb_listener" "alb_listener" {
- count = "${var.create_certificate == true ? 1 : 0}"
   load_balancer_arn = "${aws_lb.alb.arn}"
   port              = "443"
   protocol          = "HTTPS"
   ssl_policy        = "ELBSecurityPolicy-2015-05"
-  certificate_arn   = "${aws_acm_certificate_validation.cert.certificate_arn}"
-  default_action {
-    target_group_arn = "${aws_lb_target_group.alb_tg.arn}"
-    type             = "forward"
-  }
-}
-resource "aws_lb_listener" "alb_listener2" {
- count = "${var.create_certificate == false ? 1 : 0}"
-  load_balancer_arn = "${aws_lb.alb.arn}"
-  port              = "443"
-  protocol          = "HTTPS"
-  ssl_policy        = "ELBSecurityPolicy-2015-05"
-  certificate_arn   = "${var.optional_existing_cert_arn}"
+  certificate_arn   = "${var.create_certificate == true ? join("", aws_acm_certificate.cert.*.arn) : var.optional_existing_cert_arn}"
   default_action {
     target_group_arn = "${aws_lb_target_group.alb_tg.arn}"
     type             = "forward"

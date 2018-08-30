@@ -170,6 +170,12 @@ variable "public_subnets" {
 variable "public_dnszone_id" {
   default = ""
 }
-variable "commercial" {
+variable "create_certificate" {
+  default = true
+}
+variable "optional_existing_cert_arn" {
+  default = ""
+}
+variable "use_route53" {
   default = true
 }

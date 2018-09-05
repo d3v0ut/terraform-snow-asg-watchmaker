@@ -1,210 +1,178 @@
-
 variable "region" {
   default = "us-east-1"
 }
 
 ## rdcb module variables
-
-
-
-     variable "AmiId" {
+variable "AmiId" {
   default = "ami-0748b8574d41a3ebb"
      }
-
-     variable "AmiDistro" {
+variable "AmiDistro" {
   default = "CentOS"
-     }
-
-     variable "AppScriptParams" {
+}
+variable "AppScriptParams" {
   default = ""
-     }
- 
-     variable "AppScriptShell" {
+}
+variable "AppScriptShell" {
   default = "bash"
-     }
- 
-     variable "AppScriptUrl" {
+}
+variable "AppScriptUrl" {
   default = ""
-     }
-
-     variable "AppVolumeDevice" {
+}
+variable "AppVolumeDevice" {
   default = "true"
-     }
-
-     variable "AppVolumeMountPath" {
+}
+variable "AppVolumeMountPath" {
   default = "/glide"
-     }
-
-     variable "AppVolumeSize" {
+}
+variable "AppVolumeSize" {
   default = "100"
-     }
-
-     variable "AppVolumeType" {
+}
+variable "AppVolumeType" {
   default = "gp2"
-     }
-  
-     variable "CfnBootstrapUtilsUrl" {
+}
+variable "CfnBootstrapUtilsUrl" {
   default = "https://s3.amazonaws.com/cloudformation-examples/aws-cfn-bootstrap-latest.tar.gz"
-     }
-  
-     variable "CfnEndpointUrl" {
+}
+variable "CfnEndpointUrl" {
   default = "https://cloudformation.us-east-1.amazonaws.com"
-     }
-  
-     variable "CfnGetPipUrl" {
+}
+variable "CfnGetPipUrl" {
   default = "https://bootstrap.pypa.io/2.6/get-pip.py"
-     }
-  
-     variable "CloudWatchAgentUrl" {
+}
+variable "CloudWatchAgentUrl" {
   type        = "string"
   description = "(Optional) S3 URL to CloudWatch Agent installer. Example: s3://amazoncloudwatch-agent/linux/amd64/latest/AmazonCloudWatchAgent.zip"
   default     = ""
-     }
-
-     variable "CloudWatchLogsAgentUrl" {
+}
+variable "CloudWatchLogsAgentUrl" {
   type      = "string"
   default   = ""
-     }
-
-     variable "CloudWatchLogsConfigUri" {
+}
+variable "CloudWatchLogsConfigUri" {
   type      = "string"
   default   = ""
-     }
-
-     variable "CloudWatchLogsInstallUri" {
+}
+variable "CloudWatchLogsInstallUri" {
   type      = "string"
   default   = ""
-     }
-
-     variable "InstanceRole" {
+}
+variable "InstanceRole" {
   default = ""
-     }
-  
-     variable "InstanceType" {
+}
+variable "InstanceType" {
   default = "t2.medium"
-     }
-  
-     variable "KeyPairName" {
+}
+variable "KeyPairName" {
   default = ""
-     }
-     variable "LogGroupName" {
+}
+variable "LogGroupName" {
        default = ""
-     }
-    
-     variable "NoPublicIp" {
+}
+variable "NoPublicIp" {
   default = "true"
-     }
-  
-     variable "NoReboot" {
+}
+variable "NoReboot" {
   default = "false"
-     }
-  
-     variable "NoUpdates" {
+}
+variable "NoUpdates" {
   default = "false"
-     }
-  
-     variable "SecurityGroupIds" {
+}
+variable "SecurityGroupIds" {
   default = ""
-     }
-  
-     variable "ServiceNowInstallScript" {
+}
+variable "ServiceNowInstallScript" {
   default = ""
-     }
-  
-     variable "ServiceNowInstallTimeout" {
+}
+variable "ServiceNowInstallTimeout" {
   default = "8"
-     }
-  
-     variable "ServiceNowJarZipUri" {
+}
+variable "ServiceNowJarZipUri" {
   default = ""
-     }
-  
-     variable "SubnetIds" {
+}
+variable "SubnetIds" {
   default = ""
-     }
-  
-     variable "RdsEndpointAddress" {
+}
+variable "RdsEndpointAddress" {
   default = ""
-     }
-  
-     variable "RdsDbUsername" {
+}
+variable "RdsDbUsername" {
   default = "rdsdbadmin"
-     }
-  
-     variable "RdsDbPassword" {
+}
+variable "RdsDbPassword" {
   default = ""
-     }
-
-  variable "stackname" {
+}
+variable "stackname" {
   default = ""
-  }
-
-  variable "s3bucket" {
+}
+variable "s3bucket" {
   default = ""
-  }
-  
-  variable "local-exec-profile" {
+}
+variable "local-exec-profile" {
   default = "default"
-  }
-
+}
 variable "terra-profile" {
   default = "default"
-  }
-  variable "role_arn" {
-    default = ""
-    }
-  variable "role_session_name" {
-    default = "terraform"
-    }
-
-  variable "DesiredCapacity" {
-    default = ""
-    }
-  variable "MaxCapacity" {
-    default = ""
-    }
-  variable "MinCapacity" {
-    default = ""
-    }
-  variable "PypiIndexUrl" {
-    default = ""
-    }
-  variable "ScaleDownSchedule" {
-    default = ""
-    }
-  variable "ScaleUpSchedule" {
-    default = ""
-    }
-  variable "ToggleCfnInitUpdate" {
-    default = ""
-    }
-  variable "ToggleNewInstances" {
-    default = ""
-    }
-    variable "VpcId" {
-      default = ""
-    }
-  variable "WatchmakerAdminGroups" {
-    default = ""
-    }
-  variable "WatchmakerAdminUsers" {
-    default = ""
-    }
-  variable "WatchmakerConfig" {
-    default = ""
-    }
-  variable "WatchmakerEnvironment" {
-    default = ""
-    }
-  variable "WatchmakerOuPath" {
-    default = ""
-    }
-  variable "dns_name" {
-    default = ""
-  }
-  variable "public_subnets" {
-    default = ["subnet-public1", "subnet-public2"]
-  }
-  variable "public_dnszone_id" {
-    default = ""
-  }
+}
+variable "role_arn" {
+  default = ""
+}
+variable "role_session_name" {
+  default = "terraform"
+}
+variable "DesiredCapacity" {
+  default = ""
+}
+variable "MaxCapacity" {
+  default = ""
+}
+variable "MinCapacity" {
+  default = ""
+}
+variable "PypiIndexUrl" {
+  default = ""
+}
+variable "ScaleDownSchedule" {
+  default = ""
+}
+variable "ScaleUpSchedule" {
+  default = ""
+}
+variable "ToggleCfnInitUpdate" {
+  default = ""
+}
+variable "ToggleNewInstances" {
+  default = ""
+}
+variable "VpcId" {
+  default = ""
+}
+variable "WatchmakerAdminGroups" {
+  default = ""
+}
+variable "WatchmakerAdminUsers" {
+  default = ""
+}
+variable "WatchmakerConfig" {
+  default = ""
+}
+variable "WatchmakerEnvironment" {
+  default = ""
+}
+variable "WatchmakerOuPath" {
+  default = ""
+}
+variable "dns_name" {
+  default = ""
+}
+variable "public_subnets" {
+  default = ["subnet-public1", "subnet-public2"]
+}
+variable "public_dnszone_id" {
+  default = ""
+}
+variable "create_certificate" {
+  default = "true"
+}
+variable "optional_existing_cert_arn" {
+  default = ""
+}

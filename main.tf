@@ -60,6 +60,7 @@ module "snow-asgroup" {
   
   }
 resource "aws_route53_record" "lb_pub_dns" {
+  count = "${var.create_certificate == true ? 1 : 0}"
   zone_id = "${var.public_dnszone_id}"
   name    = "${var.dns_name}"
   type    = "A"
@@ -70,15 +71,16 @@ resource "aws_route53_record" "lb_pub_dns" {
   }
 }
 resource "aws_acm_certificate" "cert" {
+  count = "${var.create_certificate == true ? 1 : 0}"
   domain_name       = "${aws_route53_record.lb_pub_dns.fqdn}"
   validation_method = "DNS"
-
   tags {
     Name      = "${var.stackname}"
     Terraform = "True"
   }
 }
 resource "aws_route53_record" "cert_validation" {
+  count = "${var.create_certificate == true ? 1 : 0}"
   name    = "${aws_acm_certificate.cert.domain_validation_options.0.resource_record_name}"
   type    = "${aws_acm_certificate.cert.domain_validation_options.0.resource_record_type}"
   zone_id = "${var.public_dnszone_id}"
@@ -86,6 +88,7 @@ resource "aws_route53_record" "cert_validation" {
   ttl     = 60
 }
 resource "aws_acm_certificate_validation" "cert" {
+  count = "${var.create_certificate == true ? 1 : 0}"
   certificate_arn         = "${aws_acm_certificate.cert.arn}"
   validation_record_fqdns = ["${aws_route53_record.cert_validation.fqdn}"]
 }
@@ -112,7 +115,7 @@ resource "aws_lb_listener" "alb_listener" {
   port              = "443"
   protocol          = "HTTPS"
   ssl_policy        = "ELBSecurityPolicy-2015-05"
-  certificate_arn   = "${aws_acm_certificate_validation.cert.certificate_arn}"
+  certificate_arn   = "${var.create_certificate == true ? join("", aws_acm_certificate.cert.*.arn) : var.optional_existing_cert_arn}"
   default_action {
     target_group_arn = "${aws_lb_target_group.alb_tg.arn}"
     type             = "forward"

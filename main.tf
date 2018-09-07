@@ -55,7 +55,7 @@ module "snow-asgroup" {
   "WatchmakerOuPath" = "${var.WatchmakerOuPath}"
   "stackname" = "${var.stackname}"
   "s3bucket" = "${var.s3bucket}"
-  "lb-tg-sg1" = "${aws_security_group.lb-sg1.id}"
+  "lb-tg-sg1" = "${aws_security_group.tg-sg1.id}"
   "local-exec-profile" = "${var.local-exec-profile}" 
   
   }
@@ -123,7 +123,7 @@ resource "aws_lb_listener" "alb_listener" {
 }
 resource "aws_security_group" "lb-sg1" {
   name_prefix        = "${var.stackname}-lb-sg1"
-  description = "Security group for accessing SNow"
+  description = "Security group for accessing SNow via the Internet"
   vpc_id = "${var.VpcId}"
   ingress {
     from_port   = 443
@@ -142,7 +142,27 @@ resource "aws_security_group" "lb-sg1" {
     Terraform = "True"
   }
 }
-
+resource "aws_security_group" "tg-sg1" {
+  name_prefix        = "${var.stackname}-tg-sg1"
+  description = "Security group for accessing SNow via the Load Balancer"
+  vpc_id = "${var.VpcId}"
+  ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    security_groups = ["${aws_security_group.lb-sg1.id}"]
+  }
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  tags {
+    Name      = "${var.stackname}"
+    Terraform = "True"
+  }
+}
 resource "aws_autoscaling_attachment" "snowasg_attachment" {
   autoscaling_group_name = "${module.snow-asgroup.snowasg_ServiceNowAutoscalingGroupId}"
   alb_target_group_arn   = "${aws_lb_target_group.alb_tg.arn}"

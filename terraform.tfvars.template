@@ -49,7 +49,7 @@
 "WatchmakerEnvironment" = ""
 "WatchmakerOuPath" = ""
 "local-exec-profile" = "snow-pilot"
-"role_arn" = "arn:aws:iam::623236950987:role/E_ADMINISTRATOR"
+"role_arn" = "arn:aws:iam::[your_account]:role/[your_role]"
 "role_session_name" = "terraform"
 ## Load Balancer Vars
 "VpcId" = "vpc-xxxxxxxx"

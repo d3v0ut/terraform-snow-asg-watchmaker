@@ -105,8 +105,8 @@ resource "aws_lb" "alb" {
 }
 resource "aws_lb_target_group" "alb_tg" {
   name     = "${var.stackname}-alb-tg"
-  port     = 16001
-  protocol = "HTTP"
+  port     = 443
+  protocol = "HTTPS"
   vpc_id   = "${var.VpcId}"
   deregistration_delay = 0
 }
@@ -147,8 +147,8 @@ resource "aws_security_group" "tg-sg1" {
   description = "Security group for accessing SNow via the Load Balancer"
   vpc_id = "${var.VpcId}"
   ingress {
-    from_port   = 16001
-    to_port     = 16001
+    from_port   = 443
+    to_port     = 443
     protocol    = "tcp"
     security_groups = ["${aws_security_group.lb-sg1.id}"]
   }
@@ -166,4 +166,16 @@ resource "aws_security_group" "tg-sg1" {
 resource "aws_autoscaling_attachment" "snowasg_attachment" {
   autoscaling_group_name = "${module.snow-asgroup.snowasg_ServiceNowAutoscalingGroupId}"
   alb_target_group_arn   = "${aws_lb_target_group.alb_tg.arn}"
+}
+provider "dns" {
+update {
+server = "${var.DnsServer}"
+}
+}
+resource "dns_cname_record" "snow-pilot-record" {
+count = "${var.create_certificate == false ? 1 : 0}"
+zone = "${var.DnsZone}"
+name = "${var.DnsRecordName}"
+cname = "${aws_lb.alb.dns_name}."
+ttl = "${var.Ttl}"
 }

@@ -143,9 +143,6 @@ variable "ToggleCfnInitUpdate" {
 variable "ToggleNewInstances" {
   default = ""
 }
-variable "VpcId" {
-  default = ""
-}
 variable "WatchmakerAdminGroups" {
   default = ""
 }
@@ -161,6 +158,10 @@ variable "WatchmakerEnvironment" {
 variable "WatchmakerOuPath" {
   default = ""
 }
+## Load Balancer Vars
+variable "VpcId" {
+  default = ""
+}
 variable "dns_name" {
   default = ""
 }
@@ -170,9 +171,25 @@ variable "public_subnets" {
 variable "public_dnszone_id" {
   default = ""
 }
+## certificate toggle
+## setting create_certificate to false will trigger use of an existing certificate and on-premise dns
+## setting create_certificate to true will request a new certificate and handle r53
 variable "create_certificate" {
   default = "true"
 }
 variable "optional_existing_cert_arn" {
   default = ""
 }
+## on premise dns
+variable "DnsServer" {
+  default = "1.2.3.4"
+  }
+variable "DnsZone" {
+  default = "myzone.com."
+  }
+variable "DnsRecordName" {
+  default = "myname"
+  }
+variable "Ttl" {
+  default = "300"
+  }

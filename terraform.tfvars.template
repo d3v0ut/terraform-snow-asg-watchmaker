@@ -49,5 +49,20 @@
 "WatchmakerEnvironment" = ""
 "WatchmakerOuPath" = ""
 "local-exec-profile" = "snow-pilot"
-"role_arn" = "arn:aws:iam::[accountnumber]:role/[rolename]"
+"role_arn" = "arn:aws:iam::623236950987:role/E_ADMINISTRATOR"
 "role_session_name" = "terraform"
+## Load Balancer Vars
+"VpcId" = "vpc-xxxxxxxx"
+"dns_name" = "test"
+"public_subnets" = ["subnet-xxxxxxxx", "subnet-yyyyyyyy", "subnet-zzzzzzzz"]
+"public_dnszone_id" = "yourzoneid"
+## certificate toggle
+## setting create_certificate to false will trigger use of an existing certificate and on-premise dns
+## setting create_certificate to true will request a new certificate and handle r53
+"create_certificate" = "true"
+"optional_existing_cert_arn" = "arn:aws:acm:us-east-1:123123123:certificate/xxxxx"
+## on premise dns
+"DnsServer" = "1.2.3.4"
+"DnsZone" = "myzone.com."
+"DnsRecordName" = "myname"
+"Ttl" = "300"

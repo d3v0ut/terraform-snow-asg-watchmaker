@@ -2,6 +2,7 @@ provider "aws" {
   #  use aws profile for iam access keys
   region = "${var.region}"
   profile = "${var.terra-profile}"
+  version = "~> 1.32.0"
 assume_role {
     role_arn = "${var.role_arn}"
     session_name = "${var.role_session_name}"
@@ -105,8 +106,8 @@ resource "aws_lb" "alb" {
 }
 resource "aws_lb_target_group" "alb_tg" {
   name     = "${var.stackname}-alb-tg"
-  port     = 16001
-  protocol = "HTTP"
+  port     = 443
+  protocol = "HTTPS"
   vpc_id   = "${var.VpcId}"
   deregistration_delay = 0
 }
@@ -138,7 +139,7 @@ resource "aws_security_group" "lb-sg1" {
     cidr_blocks = ["0.0.0.0/0"]
   }
   tags {
-    Name      = "${var.stackname}"
+    Name      = "${var.stackname}-lb-sg1"
     Terraform = "True"
   }
 }
@@ -147,8 +148,8 @@ resource "aws_security_group" "tg-sg1" {
   description = "Security group for accessing SNow via the Load Balancer"
   vpc_id = "${var.VpcId}"
   ingress {
-    from_port   = 16001
-    to_port     = 16001
+    from_port   = 443
+    to_port     = 443
     protocol    = "tcp"
     security_groups = ["${aws_security_group.lb-sg1.id}"]
   }
@@ -159,7 +160,7 @@ resource "aws_security_group" "tg-sg1" {
     cidr_blocks = ["0.0.0.0/0"]
   }
   tags {
-    Name      = "${var.stackname}"
+    Name      = "${var.stackname}-tg-sg1"
     Terraform = "True"
   }
 }
@@ -168,9 +169,10 @@ resource "aws_autoscaling_attachment" "snowasg_attachment" {
   alb_target_group_arn   = "${aws_lb_target_group.alb_tg.arn}"
 }
 provider "dns" {
-update {
-server = "${var.DnsServer}"
-}
+  version = "~> 2.0.0"
+  update {
+  server = "${var.DnsServer}"
+  }
 }
 resource "dns_cname_record" "snow-pilot-record" {
 count = "${var.create_certificate == false ? 1 : 0}"

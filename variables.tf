@@ -171,6 +171,27 @@ variable "public_subnets" {
 variable "public_dnszone_id" {
   default = ""
 }
+variable "deregistration_delay" {
+  default = "300"
+}
+variable "stickiness" {
+  default = "true"
+}
+variable "cookie_duration" {
+  default = "86400"
+}
+variable "interval" {
+  default = "30"
+}
+variable "timeout" {
+  default = "5"
+}
+variable "healthy_threshold" {
+  default = "5"
+}
+variable "unhealthy_threshold" {
+  default = "2"
+}
 ## certificate toggle
 ## setting create_certificate to false will trigger use of an existing certificate and on-premise dns
 ## setting create_certificate to true will request a new certificate and handle r53

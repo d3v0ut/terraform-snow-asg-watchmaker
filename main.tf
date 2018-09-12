@@ -109,7 +109,21 @@ resource "aws_lb_target_group" "alb_tg" {
   port     = 443
   protocol = "HTTPS"
   vpc_id   = "${var.VpcId}"
-  deregistration_delay = 0
+  deregistration_delay = "${var.deregistration_delay}"
+  stickiness {
+    type = "lb_cookie"
+    cookie_duration = "${var.cookie_duration}"
+    enabled = "${var.stickiness}"
+  }
+  health_check {
+    path = "/"
+    matcher = "200"
+    protocol = "HTTPS"
+    interval = "${var.interval}"
+    timeout = "${var.timeout}"
+    healthy_threshold = "${var.healthy_threshold}"
+    unhealthy_threshold = "${var.unhealthy_threshold}"
+  }
 }
 resource "aws_lb_listener" "alb_listener" {
   load_balancer_arn = "${aws_lb.alb.arn}"

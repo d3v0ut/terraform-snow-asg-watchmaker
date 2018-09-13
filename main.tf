@@ -95,10 +95,10 @@ resource "aws_acm_certificate_validation" "cert" {
 }
 resource "aws_lb" "alb" {
   name               = "${var.stackname}-alb"
-  internal           = false
+  internal           = "${var.lb_internal}"
   load_balancer_type = "application"
   security_groups    = ["${aws_security_group.lb-sg1.id}"]
-  subnets            = ["${var.public_subnets}"]
+  subnets            = ["${var.lb_subnets}"]
   tags {
     Name      = "${var.stackname}"
     Terraform = "True"

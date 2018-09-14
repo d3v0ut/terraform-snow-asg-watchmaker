@@ -165,7 +165,10 @@ variable "VpcId" {
 variable "dns_name" {
   default = ""
 }
-variable "public_subnets" {
+variable "lb_internal" {
+  default = "false"
+}
+variable "lb_subnets" {
   default = ["subnet-public1", "subnet-public2"]
 }
 variable "public_dnszone_id" {

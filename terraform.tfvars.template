@@ -52,7 +52,8 @@
 ## Load Balancer Vars
 "VpcId" = "vpc-xxxxxxxx"
 "dns_name" = "test"
-"public_subnets" = ["subnet-xxxxxxxx", "subnet-yyyyyyyy", "subnet-zzzzzzzz"]
+"lb_internal" = "false"
+"lb_subnets" = ["subnet-xxxxxxxx", "subnet-yyyyyyyy", "subnet-zzzzzzzz"]
 "public_dnszone_id" = "yourzoneid"
 "deregistration_delay" = "300"
 "stickiness" = "true"

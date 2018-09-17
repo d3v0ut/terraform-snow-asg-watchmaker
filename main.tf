@@ -55,7 +55,7 @@ module "snow-asgroup" {
   "WatchmakerEnvironment" = "${var.WatchmakerEnvironment}"
   "WatchmakerOuPath" = "${var.WatchmakerOuPath}"
   "stackname" = "${var.stackname}"
-  "s3bucket" = "${var.s3bucket}"
+  "SnowAsgTemplateUrl" = "${var.SnowAsgTemplateUrl}"
   "lb-tg-sg1" = "${aws_security_group.tg-sg1.id}"
   "local-exec-profile" = "${var.local-exec-profile}" 
   

@@ -104,8 +104,8 @@ variable "RdsDbPassword" {
 variable "stackname" {
   default = ""
 }
-variable "s3bucket" {
-  default = ""
+variable "SnowAsgTemplateUrl" {
+  default = "https://s3.amazonaws.com/bucket/template"
 }
 variable "local-exec-profile" {
   default = "default"

@@ -37,7 +37,7 @@
 "ServiceNowJarZipUri" = "https://s3.amazonaws.com/yourbucket/servicenow/media/glide-jakarta.zip"
 "SubnetIds" = "subnet-xxxxxxxx"
 "stackname" = "snow-autoscaling"
-"s3bucket" = "bucketname"
+"SnowAsgTemplateUrl" = "https://s3.amazonaws.com/bucket/template.cfn.json"
 "terra-profile" = "default"
 "ToggleCfnInitUpdate" = ""
 "ToggleNewInstances" = ""

@@ -2,6 +2,7 @@ provider "aws" {
   #  use aws profile for iam access keys
   region = "${var.region}"
   profile = "${var.terra-profile}"
+  version = "~> 1.32.0"
 assume_role {
     role_arn = "${var.role_arn}"
     session_name = "${var.role_session_name}"
@@ -54,7 +55,7 @@ module "snow-asgroup" {
   "WatchmakerEnvironment" = "${var.WatchmakerEnvironment}"
   "WatchmakerOuPath" = "${var.WatchmakerOuPath}"
   "stackname" = "${var.stackname}"
-  "s3bucket" = "${var.s3bucket}"
+  "SnowAsgTemplateUrl" = "${var.SnowAsgTemplateUrl}"
   "lb-tg-sg1" = "${aws_security_group.tg-sg1.id}"
   "local-exec-profile" = "${var.local-exec-profile}" 
   
@@ -94,10 +95,10 @@ resource "aws_acm_certificate_validation" "cert" {
 }
 resource "aws_lb" "alb" {
   name               = "${var.stackname}-alb"
-  internal           = false
+  internal           = "${var.lb_internal}"
   load_balancer_type = "application"
   security_groups    = ["${aws_security_group.lb-sg1.id}"]
-  subnets            = ["${var.public_subnets}"]
+  subnets            = ["${var.lb_subnets}"]
   tags {
     Name      = "${var.stackname}"
     Terraform = "True"
@@ -108,7 +109,21 @@ resource "aws_lb_target_group" "alb_tg" {
   port     = 443
   protocol = "HTTPS"
   vpc_id   = "${var.VpcId}"
-  deregistration_delay = 0
+  deregistration_delay = "${var.deregistration_delay}"
+  stickiness {
+    type = "lb_cookie"
+    cookie_duration = "${var.cookie_duration}"
+    enabled = "${var.stickiness}"
+  }
+  health_check {
+    path = "/"
+    matcher = "200"
+    protocol = "HTTPS"
+    interval = "${var.interval}"
+    timeout = "${var.timeout}"
+    healthy_threshold = "${var.healthy_threshold}"
+    unhealthy_threshold = "${var.unhealthy_threshold}"
+  }
 }
 resource "aws_lb_listener" "alb_listener" {
   load_balancer_arn = "${aws_lb.alb.arn}"
@@ -138,7 +153,7 @@ resource "aws_security_group" "lb-sg1" {
     cidr_blocks = ["0.0.0.0/0"]
   }
   tags {
-    Name      = "${var.stackname}"
+    Name      = "${var.stackname}-lb-sg1"
     Terraform = "True"
   }
 }
@@ -159,7 +174,7 @@ resource "aws_security_group" "tg-sg1" {
     cidr_blocks = ["0.0.0.0/0"]
   }
   tags {
-    Name      = "${var.stackname}"
+    Name      = "${var.stackname}-tg-sg1"
     Terraform = "True"
   }
 }
@@ -168,9 +183,10 @@ resource "aws_autoscaling_attachment" "snowasg_attachment" {
   alb_target_group_arn   = "${aws_lb_target_group.alb_tg.arn}"
 }
 provider "dns" {
-update {
-server = "${var.DnsServer}"
-}
+  version = "~> 2.0.0"
+  update {
+  server = "${var.DnsServer}"
+  }
 }
 resource "dns_cname_record" "snow-pilot-record" {
 count = "${var.create_certificate == false ? 1 : 0}"

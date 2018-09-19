@@ -134,7 +134,7 @@
   default = ""
   }
 
-  variable "s3bucket" {
+  variable "SnowAsgTemplateUrl" {
   default = ""
   }
   

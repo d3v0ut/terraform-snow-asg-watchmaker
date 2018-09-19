@@ -104,8 +104,8 @@ variable "RdsDbPassword" {
 variable "stackname" {
   default = ""
 }
-variable "s3bucket" {
-  default = ""
+variable "SnowAsgTemplateUrl" {
+  default = "https://s3.amazonaws.com/bucket/template"
 }
 variable "local-exec-profile" {
   default = "default"
@@ -165,11 +165,35 @@ variable "VpcId" {
 variable "dns_name" {
   default = ""
 }
-variable "public_subnets" {
+variable "lb_internal" {
+  default = "false"
+}
+variable "lb_subnets" {
   default = ["subnet-public1", "subnet-public2"]
 }
 variable "public_dnszone_id" {
   default = ""
+}
+variable "deregistration_delay" {
+  default = "300"
+}
+variable "stickiness" {
+  default = "true"
+}
+variable "cookie_duration" {
+  default = "86400"
+}
+variable "interval" {
+  default = "30"
+}
+variable "timeout" {
+  default = "5"
+}
+variable "healthy_threshold" {
+  default = "5"
+}
+variable "unhealthy_threshold" {
+  default = "2"
 }
 ## certificate toggle
 ## setting create_certificate to false will trigger use of an existing certificate and on-premise dns

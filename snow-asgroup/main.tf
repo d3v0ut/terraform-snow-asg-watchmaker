@@ -48,5 +48,5 @@ resource "aws_cloudformation_stack" "snowasg" {
   "WatchmakerOuPath" = "${var.WatchmakerOuPath}"
    }
 
-template_url = "https://s3.amazonaws.com/${var.s3bucket}/make_servicenow_autoscaling.template.json"
+template_url = "${var.SnowAsgTemplateUrl}"
 }
